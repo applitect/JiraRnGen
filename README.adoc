@@ -1,20 +1,19 @@
-Jira Release Notes Generator (JiraRnGen)
-===============================================
-Author: David Thompson <dthompsn1@gmail.com>
-Verison 0.1.0 2016-08-03
+= Jira Release Notes Generator (JiraRnGen)
+:Author: David Thompson 
+:Email: <dthompsn1@gmail.com>
+:Revision: 0.1.0 2016-08-03
 
+== Description
 I was looking for a way with hosted Jira to be able to send out release
 notes with our own template. Since the hosted version doesn't allow you to
 edit the templates, I decided to build an application that worked with the
 Jira api to build an html page that could be emailed to our team. This NodeJS
 app is the result of this work.
 
-
-# ReleaseNotes
+== ReleaseNotes
 0.1.0 - First iteration at being able to send Jira Release Notes
 
-
-# Usage
+== Usage
 First time to use, run within the JiraRnGen directory.
 ----
 $ npm install
