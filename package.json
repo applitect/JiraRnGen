@@ -1,0 +1,17 @@
+{
+  "name": "JiraRnGen",
+  "version": "0.1.0",
+  "description": "Release Notes generator for Jira",
+  "main": "release-notes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "dependencies": {
+    "sendgrid":"^4.0.1",
+    "juice":"2.0.0",
+    "stdio":"0.2.2"
+  },
+  "author": "dthompson",
+  "license": "MIT",
+  "readmeFilename": "README.adoc"
+}
