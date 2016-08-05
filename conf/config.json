@@ -1,4 +1,0 @@
-{
-    "sendGridApiKey" : "your sendgrid api key",
-    "fromAddr": "your-from-email@address"
-}
