@@ -1,5 +1,6 @@
 .settings/
 node_modules/
+conf/config.json
 .jshintrc
 .project
 .sublime-project
