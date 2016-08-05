@@ -18,6 +18,9 @@ First time to use, run within the JiraRnGen directory.
 ----
 $ npm install
 ----
+You will need to create a image/logo.json file; you can copy the example to logo.json for testing.
+You will need to set up a sendgrid account and set up an API key to use with sendgrid. Copy conf/config-example.json to conf/config.json.
+
 Then to run each time
 ----
 $ node release-notes.js -u username -p password --email -n jira-hostname -f release-name -s email-address
