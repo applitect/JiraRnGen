@@ -13,7 +13,8 @@ var args = stdio.getopt({
     'hostName' : {key: 'n', description: 'Jira Host [blah.atlassian.net]', mandatory: true, args: 1},
     'hostPort' : {key: 't', description: 'Port for Jira host', args:1},
     'context' : {key: 'c', description: 'Context for Jira Url', args: 1},
-    'fixVersion' : {key: 'f', description: 'Version name which to create release notes', mandatory: true, args: 1}
+    'fixVersion' : {key: 'f', description: 'Version name which to create release notes', mandatory: true, args: 1},
+    'component' : {key: 'm', description: 'Only generate release notes with specified comma separated component(s) listed', args: 1}
 });
 
 var fixVersion = args.fixVersion;
@@ -25,12 +26,10 @@ if (args.context) {
 var options = {
         host: args.hostName,
         port: args.hostPort || 443,
-        path: context + 'rest/api/2/search?jql=fixVersion=' + fixVersion,
         headers: {
             'Authorization' : 'Basic ' + new Buffer(args.username + ':' + args.password).toString('base64')
         }
     };
-
 
 function formatDate(date) {
     return date.substring(0,10);
@@ -180,6 +179,12 @@ function getVersionInfo(id, issues) {
             console.log("Got error: " + e.message);
         });
     });
+}
+
+// Set up the Jira search function to locate the specific issues to be reported
+options.path = context + 'rest/api/2/search?jql=fixVersion=' + encodeURI(fixVersion);
+if (args.component) {
+    options.path = options.path + encodeURI(' AND component in (' + args.component + ')');
 }
 
 var request = https.get(options, function(res) {
