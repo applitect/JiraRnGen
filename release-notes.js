@@ -64,6 +64,15 @@ function buildEmail(release, issues) {
     for(var i = 0, len = issues.length; i < len; i++) {
         var issue = issues[i];
         if (issue !== undefined) {
+            if (issue.changelog !== undefined) {
+                var hist = issue.changelog.histories;
+                var changers = {};
+                for (var c = 0; c < hist.length; c++) {
+                    var change = hist[c];
+                    changers[change.author.name] = 1;
+                }
+                issue.changers = Object.keys(changers);
+            }
             issueType[issue.fields.issuetype.name] = issueType[issue.fields.issuetype.name] || [];
             issueType[issue.fields.issuetype.name].unshift(issue);
         }
@@ -79,7 +88,7 @@ function buildEmail(release, issues) {
             var issue = typedIssues[i];
             var link = 'https://' + args.hostName + '/browse/' + issue.key;
             html +=
-                '<div class="issue" tabindex="0"><span class="issue-arrow"> &#8227; &nbsp; </span><a href="' + link + '">' + issue.key + '</a> - ' + issue.fields.summary + ' (<i>' + issue.fields.assignee.displayName + '</i>)</div>';
+                '<div class="issue" tabindex="0"><span class="issue-arrow"> &#8227; &nbsp; </span><a href="' + link + '">' + issue.key + '</a> - ' + issue.fields.summary + ' (<i>' + issue.changers + '</i>)</div>';
             html += '<div class="child">\n' +
                 '<table>\n' +
                 '<td><span class="header">Priority:</span> ' + issue.fields.priority.name + '</td><td><span class="header">Components:</span> ';
@@ -186,6 +195,7 @@ options.path = context + 'rest/api/2/search?jql=fixVersion=' + encodeURI(fixVers
 if (args.component) {
     options.path = options.path + encodeURI(' AND component in (' + args.component + ')');
 }
+options.path = options.path + '&expand=changelog';
 
 var request = https.get(options, function(res) {
     if (res.statusCode < 200 || res.statusCode > 299) {
