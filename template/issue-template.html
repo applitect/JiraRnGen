@@ -1,0 +1,32 @@
+{{#issues}}
+<div class="issue" tabindex="0"><span class="issue-arrow"> &#8227; &nbsp; </span><a href="' + link + '"> {{key}} </a> - {{fields.summary}} (<i> {{changers}} </i>)</div>
+<div class="child">
+<table>
+<tr>
+<td><span class="header">Priority:</span> {{fields.priority.name}} </td><td><span class="header">Components:</span>
+{{#fields.components}}
+<span class="component"> {{name}} </span>
+{{/fields.components}}
+</td>
+</tr>
+<tr>
+{{#fields.creator}}
+<td><span class="header">Created by:</span> {{displayName}} </td>
+{{/fields.creator}}
+<td><span class="header">Reported by:</span> {{fields.reporter.displayName}} </td>
+</tr>
+<tr>
+<td><span class="header">Created date:</span> {{fields.created}} </td>
+{{#fields.duedate}}
+<td><span class="header">Due date:</span> {{.}}</td>
+{{/fields.duedate}}
+</tr>
+<tr>
+<td><span class="header">Resolution:</span> {{fields.resolution.name}}</td>
+</tr>
+<tr>
+<td colspan="2" class="description"><span class="header">Description: </span><div> {{{description}}} </div></td>
+</tr>
+</table>
+</div>
+{{/issues}}

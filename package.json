@@ -9,7 +9,8 @@
   "dependencies": {
     "sendgrid":"^4.0.1",
     "juice":"2.0.0",
-    "stdio":"0.2.2"
+    "stdio":"0.2.2",
+    "mustache":"2.3.0"
   },
   "author": "dthompson",
   "license": "MIT",
