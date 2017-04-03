@@ -221,7 +221,7 @@ if (args.fixVersion !== undefined) {
             var json = JSON.parse(body);
             var issues = json.issues;
             if (issues === undefined || issues.length === 0) {
-                console.log("No issues found for jqlSearch: " + args.jsqlSearch);
+                console.log("No issues found for jqlSearch.");
                 return;
             }
             var email = buildEmail(args.releaseName, issues);
