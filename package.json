@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
   },
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/applitect/JiraRnGen"
+  },
   "dependencies": {
     "sendgrid":"^4.0.1",
     "juice":"2.0.0",
